@@ -3,7 +3,7 @@ import Navbar from "./navbar";
 
 const Header = () => {
     return (
-        <header className="relative w-full bg-black h-screen bg-white">
+        <header className="relative w-full bg-black h-[700px]">
             <Navbar/>
             <BannerSlider/>
         </header>

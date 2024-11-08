@@ -19,8 +19,7 @@ export default function BannerSlider() {
         method: "GET",
         headers: {
           accept: "application/json",
-          Authorization:
-            `Bearer ${import.meta.env.VITE_MOVIE_API}`,
+          Authorization: `Bearer ${import.meta.env.VITE_MOVIE_API}`,
         },
       };
 
@@ -40,7 +39,7 @@ export default function BannerSlider() {
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
-          delay: 2500,
+          delay: 5000,
           disableOnInteraction: false,
         }}
         pagination={{
@@ -59,6 +58,7 @@ export default function BannerSlider() {
                   backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${item.backdrop_path})`,
                 }}
               ></div>
+              <div className="absolute bottom-0 left-0 right-0 h-[120px] bg-gradient-to-b from-transparent to-black "></div>
             </SwiperSlide>
           ))}
       </Swiper>
