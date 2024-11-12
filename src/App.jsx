@@ -1,9 +1,9 @@
-import Navbar from "./ui/navbar";
+import Header from "./ui/header";
 
 const App = () => {
   return (
     <div>
-      <Navbar/>
+      <Header/>
     </div>
   );
 }
