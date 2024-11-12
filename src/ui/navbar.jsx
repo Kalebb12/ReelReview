@@ -16,13 +16,13 @@ const Navbar = () => {
     },
   ];
   return (
-    <header className="py-12 px-[95px]">
+    <div className="py-12 px-[95px] bg-transparent absolute top-0 left-0 right-0 z-10">
       <div className="flex items-center justify-between">
         <h2 className="font-[BlackChancery] text-[32px] first-letter:text-6xl first-letter:text-blue-900">
           Reel Review
         </h2>
 
-        <nav className=" flex items-center gap-16">
+        <nav className="flex items-center gap-16 ">
           {links.map((link, index) => (
             <Link className="text-3xl" key={index} to={link.path}>
               {link.name}
@@ -31,13 +31,13 @@ const Navbar = () => {
         </nav>
 
         <form action="">
-          <label className="input input-bordered flex items-center gap-2">
+          <label className="flex items-center gap-2 input input-bordered">
             <input type="text" className="grow" placeholder="search movies..." />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
               fill="currentColor"
-              className="h-4 w-4 opacity-70"
+              className="w-4 h-4 opacity-70"
             >
               <path
                 fillRule="evenodd"
@@ -48,7 +48,7 @@ const Navbar = () => {
           </label>
         </form>
       </div>
-    </header>
+    </div>
   );
 };
 
