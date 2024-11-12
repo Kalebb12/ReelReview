@@ -32,7 +32,7 @@ export default function BannerSlider() {
     },
   });
 
-  console.log(data);
+  // console.log(data);
   return (
     <>
       <Swiper
