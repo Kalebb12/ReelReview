@@ -43,7 +43,7 @@ export default function BannerSlider() {
               <div
                 className="relative w-full h-full bg-black bg-center bg-cover"
                 style={{
-                  backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${item.backdrop_path})`,
+                  backgroundImage: `url(https://image.tmdb.org/t/p/original/${item.backdrop_path})`,
                 }}
               >
                 <div className="absolute flex flex-col gap-3 items-start justify-start text-justify bottom-[100px] left-[127px] max-w-[990px]">
