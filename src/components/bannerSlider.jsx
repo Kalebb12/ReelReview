@@ -1,7 +1,6 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -9,35 +8,19 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { QueryClient, useQuery, useQueryClient } from "@tanstack/react-query";
+import {useQuery, useQueryClient } from "@tanstack/react-query";
 import Button from "./button";
 import { FaPlay } from "react-icons/fa";
+import { getLastestMovies } from "../services/movieApi";
 
 export default function BannerSlider() {
   const { data, error, isPending } = useQuery({
     queryKey: ["popular-movies"],
-    queryFn: async () => {
-      const options = {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_MOVIE_API}`,
-        },
-      };
-
-      const response = await fetch(
-        "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
-        options
-      );
-      const data = await response.json();
-      return data.results;
-    },
+    queryFn: async ()=>  getLastestMovies()
   });
 
-  console.log(data);
   const queryClient = useQueryClient();
   const genres = queryClient.getQueryData(["genre"]);
-  console.log(genres);
   return (
     <>
       <Swiper

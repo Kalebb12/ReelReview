@@ -16,3 +16,33 @@ export async function getGenre() {
    const data = await res.json()
    return data.genres
 }
+
+export async function getLastestMovies (){
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${import.meta.env.VITE_MOVIE_API}`,
+    },
+  };
+
+  const response = await fetch(
+    "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
+    options
+  );
+  const data = await response.json();
+  return data.results;
+}
+
+export async function getTopRatedMovies (){
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${import.meta.env.VITE_MOVIE_API}`}
+  };
+  
+  const response = await fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
+  const data = await response.json()
+  return data.results
+}
