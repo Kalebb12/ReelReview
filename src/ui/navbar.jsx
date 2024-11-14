@@ -24,7 +24,7 @@ const Navbar = () => {
 
         <nav className="flex items-center gap-16 ">
           {links.map((link, index) => (
-            <Link className="text-3xl" key={index} to={link.path}>
+            <Link className="text-[25px]" key={index} to={link.path}>
               {link.name}
             </Link>
           ))}
