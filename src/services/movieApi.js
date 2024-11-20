@@ -1,13 +1,13 @@
-export async function getGenre() {
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        `Bearer ${import.meta.env.VITE_MOVIE_API}`
-    },
-  };
+const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      `Bearer ${import.meta.env.VITE_MOVIE_API}`
+  },
+};
 
+export async function getGenre() {
   const res = await fetch("https://api.themoviedb.org/3/genre/movie/list?language=en", options)
   if(!res.ok){
     console.log("Failed to load Genres")
@@ -18,14 +18,6 @@ export async function getGenre() {
 }
 
 export async function getLastestMovies (){
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${import.meta.env.VITE_MOVIE_API}`,
-    },
-  };
-
   const response = await fetch(
     "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
     options
@@ -35,14 +27,19 @@ export async function getLastestMovies (){
 }
 
 export async function getTopRatedMovies (){
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: `Bearer ${import.meta.env.VITE_MOVIE_API}`}
-  };
-  
   const response = await fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
   const data = await response.json()
   return data.results
+}
+
+export const searchMovie = async  (q) => {
+  const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${q}&include_adult=false&language=en-US&page=1`, options)
+  const data = await response.json()
+  return data.results
+}
+
+export const getMovieById = async  (id) => {
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
+  const data = await response.json()
+  return data
 }

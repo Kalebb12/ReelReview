@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const links = [
     {
@@ -15,12 +15,22 @@ const Navbar = () => {
       path: "/account",
     },
   ];
+  
+  
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    navigate({
+      pathname:"/search",
+      search:`?q=${e.target[0].value}`
+    })
+  }
   return (
     <div className="py-12 px-[95px] bg-transparent absolute top-0 left-0 right-0 z-10">
       <div className="flex items-center justify-between">
-        <h2 className="font-[BlackChancery] text-[32px] first-letter:text-6xl first-letter:text-blue-900">
+        <Link to="/" className="font-[BlackChancery] text-[32px] first-letter:text-6xl first-letter:text-blue-900">
           Reel Review
-        </h2>
+        </Link>
 
         <nav className="flex items-center gap-16 ">
           {links.map((link, index) => (
@@ -30,9 +40,9 @@ const Navbar = () => {
           ))}
         </nav>
 
-        <form action="">
+        <form action="" onSubmit={handleSubmit}>
           <label className="flex items-center gap-2 input input-bordered">
-            <input type="text" className="grow" placeholder="search movies..." />
+            <input type="text" className="grow" placeholder="search movies..." name="movie-title" />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"

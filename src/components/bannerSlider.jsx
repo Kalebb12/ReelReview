@@ -11,12 +11,12 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import {useQuery, useQueryClient } from "@tanstack/react-query";
 import Button from "./button";
 import { FaPlay } from "react-icons/fa";
-import { getLastestMovies } from "../services/movieApi";
+import { getTopRatedMovies } from "../services/movieApi";
 
 export default function BannerSlider() {
   const { data, error, isPending } = useQuery({
-    queryKey: ["popular-movies"],
-    queryFn: async ()=>  getLastestMovies()
+    queryKey: ["topRated-movies"],
+    queryFn: async ()=>getTopRatedMovies()
   });
 
   const queryClient = useQueryClient();
