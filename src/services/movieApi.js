@@ -43,3 +43,9 @@ export const getMovieById = async  (id) => {
   const data = await response.json()
   return data
 }
+
+export const getMovieTrailer = async  (id) => {
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options)
+  const data = await response.json()
+  return data.results
+}

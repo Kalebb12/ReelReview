@@ -2,18 +2,18 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const links = [
-    {
-      name: "UpComing",
-      path: "/upcoming",
-    },
-    {
-      name: "Shows",
-      path: "/shows",
-    },
-    {
-      name: "Account",
-      path: "/account",
-    },
+    // {
+    //   name: "UpComing",
+    //   path: "/upcoming",
+    // },
+    // {
+    //   name: "Shows",
+    //   path: "/shows",
+    // },
+    // {
+    //   name: "Account",
+    //   path: "/account",
+    // },
   ];
   
   
@@ -28,7 +28,7 @@ const Navbar = () => {
   return (
     <div className="py-12 px-[95px] bg-transparent absolute top-0 left-0 right-0 z-10">
       <div className="flex items-center justify-between">
-        <Link to="/" className="font-[BlackChancery] text-[32px] first-letter:text-6xl first-letter:text-blue-900">
+        <Link to="/" className="font-[BlackChancery] text-[25px] md:text-[32px] first-letter:text-6xl first-letter:text-blue-900">
           Reel Review
         </Link>
 

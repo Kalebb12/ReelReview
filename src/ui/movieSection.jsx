@@ -17,8 +17,8 @@ const MovieSection = () => {
     queryFn: async () => getTopRatedMovies(),
   });
   return (
-    <div>
-      <div className="px-[40px] py-[51px] flex flex-col gap-8">
+    <div className='flex flex-col px-[40px] gap-[50px] py-[51px]'>
+      <div className="flex flex-col gap-8 ">
         <span className="font-semibold text-[37px]">Latest Releases</span>
         <div className="flex items-center gap-10 overflow-x-scroll snap-x">
           {data?.map((item) => (
@@ -27,7 +27,7 @@ const MovieSection = () => {
         </div>
       </div>
 
-      <div className="px-[40px] py-[51px] flex flex-col gap-8">
+      <div className="flex flex-col gap-8 ">
         <span className="font-semibold text-[37px]">Trending Movies</span>
         <div className="flex items-center gap-10 overflow-x-scroll snap-x">
           {ratedData?.map((item) => (

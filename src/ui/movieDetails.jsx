@@ -3,7 +3,7 @@ import Button from "../components/button";
 import Navbar from "./navbar";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { getMovieById } from "../services/movieApi";
+import { getMovieById, getMovieTrailer } from "../services/movieApi";
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -15,6 +15,16 @@ const MovieDetails = () => {
     queryKey: ["movie-details", id],
     queryFn: async () => getMovieById(id),
   });
+
+  const {
+    isPending: loading,
+    error: trailerError,
+    data,
+  } = useQuery({
+    queryKey: ["trailer", id],
+    queryFn: async () => getMovieTrailer(id),
+  });
+
   return (
     <div>
       <Navbar />
@@ -23,7 +33,9 @@ const MovieDetails = () => {
           <div
             className="relative w-full h-[685px] bg-black bg-center bg-cover"
             style={{
-              backgroundImage: `url(https://image.tmdb.org/t/p/original${item.backdrop_path})`,
+              backgroundImage: `
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.226), rgba(0, 0, 0, 0.158)),
+              url(https://image.tmdb.org/t/p/original${item.backdrop_path})`,
             }}
           >
             <div className="absolute flex flex-col gap-3 items-start justify-start text-justify bottom-[100px] left-[127px] max-w-[990px]">
@@ -55,10 +67,28 @@ const MovieDetails = () => {
             <h2 className="text-[37px] font-semibold">Synopsis</h2>
             <p>{item.overview}</p>
           </div>
-
-          
         </div>
       )}
+
+      <div className="grid grid-cols-1 gap-3 px-3 md:grid-cols-3 sm:grid-cols-2 place-items-center">
+        {data &&
+          data.slice(0, 3).map((trailer) => {
+            return (
+              <iframe
+                key={trailer.id}
+                width="100%"
+                height="350px"
+                className="bg-black"
+                src={`https://www.youtube.com/embed/${trailer.key}?${trailer.id}`}
+                title={trailer.name}
+                frameBorder="0"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              ></iframe>
+            );
+          })}
+      </div>
     </div>
   );
 };
