@@ -18,8 +18,8 @@ const Search = () => {
       </div>
       <div>
         {isPending && <p>loading...</p>}
-        <div className="grid grid-cols-4 gap-y-10">
-          {data && data.map((movie) => <MovieCard movie={movie} />)}
+        <div className="grid justify-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-y-10">
+          {data && data.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
         </div>
         <div>
           {data && data.length === 0 && (

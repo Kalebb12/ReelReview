@@ -4,14 +4,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/navigation";
 
 // import required modules
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import {useQuery, useQueryClient } from "@tanstack/react-query";
 import Button from "./button";
 import { FaPlay } from "react-icons/fa";
 import { getTopRatedMovies } from "../services/movieApi";
+import { useNavigate } from "react-router-dom";
 
 export default function BannerSlider() {
   const { data, error, isPending } = useQuery({
@@ -21,6 +21,13 @@ export default function BannerSlider() {
 
   const queryClient = useQueryClient();
   const genres = queryClient.getQueryData(["genre"]);
+
+  const navigate = useNavigate()
+
+  const handleNavigate = (movieId) => {
+    navigate("/movieDetails/"+movieId)
+  }
+  
   return (
     <>
       <Swiper
@@ -34,7 +41,7 @@ export default function BannerSlider() {
           clickable: true,
         }}
         navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
+        modules={[Autoplay, Pagination]}
         className="mySwiper"
       >
         {data &&
@@ -50,28 +57,25 @@ export default function BannerSlider() {
                 }}
               
               >
-                <div className="absolute flex flex-col gap-3 items-start justify-start text-justify bottom-[100px] left-[127px] max-w-[990px]">
+                <div className="absolute flex flex-col gap-3 items-start justify-start text-justify bottom-[100px] xl:left-[127px] lg:left-[80px] max-w-[990px] px-5">
                   <div>
                     <p className="font-light text-[22px]">
                       {item.release_date.split("-")[0]}
                     </p>
-                    <span className="text-[48px] font-semibold">
+                    <span className="md:text-[48px] text-[22px] font-semibold">
                       {item.title}
                     </span>
                   </div>
-                  <span className="text-[19px] font-semibold">
+                  <span className="md:text-[19px] text-[15px] font-semibold">
                     {genres?.find((g) => g.id === item.genre_ids[0]).name}
                   </span>
-                  <p className="text-[19px]">{item.overview}</p>
+                  <p className="md:text-[19px] text-[14px]">{item.overview}</p>
                   <div className="flex items-center gap-6">
-                    <Button>
+                    <Button onClick={()=>handleNavigate(item.id)}>
                       <FaPlay />
                       Play Now
                     </Button>
-                    <Button type="outline">
-                      <FaPlay />
-                      Watch Triller
-                    </Button>
+                   
                   </div>
                 </div>
               </div>

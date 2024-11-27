@@ -26,9 +26,9 @@ const Navbar = () => {
     })
   }
   return (
-    <div className="py-12 px-[95px] bg-transparent absolute top-0 left-0 right-0 z-10">
-      <div className="flex items-center justify-between">
-        <Link to="/" className="font-[BlackChancery] text-[25px] md:text-[32px] first-letter:text-6xl first-letter:text-blue-900">
+    <div className="py-12 px-5 lg:px-[95px] bg-transparent absolute top-0 left-0 right-0 z-10">
+      <div className="flex items-center justify-between gap-3">
+        <Link to="/" className="text-nowrap font-[BlackChancery] text-[18px] sm:text-[25px] md:text-[32px] first-letter:text-6xl first-letter:text-blue-900">
           Reel Review
         </Link>
 
@@ -42,7 +42,7 @@ const Navbar = () => {
 
         <form action="" onSubmit={handleSubmit}>
           <label className="flex items-center gap-2 input input-bordered">
-            <input type="text" className="grow" placeholder="search movies..." name="movie-title" />
+            <input type="text" className="w-full grow" placeholder="search movies..." name="movie-title" />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"

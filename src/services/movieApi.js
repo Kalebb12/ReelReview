@@ -49,3 +49,9 @@ export const getMovieTrailer = async  (id) => {
   const data = await response.json()
   return data.results
 }
+
+export const getMovieCast = async  (id) => {
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`, options)
+  const data = await response.json()
+  return data.cast
+}

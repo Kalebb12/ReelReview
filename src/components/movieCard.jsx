@@ -6,7 +6,7 @@ const MovieCard = ({ movie }) => {
   const genres = queryClient.getQueryData(["genre"]);
   return (
     <Link to={"/movieDetails/"+movie.id}>
-      <div className="w-[267px] min-w-[267px] flex flex-col items-start gap-5 snap-start overflow-hidden">
+      <div className="lg:w-[267px] w-[200px] min-w-[200px] lg:min-w-[267px] flex flex-col items-start gap-5 snap-start overflow-hidden">
         <img
           src={
             movie.poster_path
